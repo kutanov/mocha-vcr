@@ -54,7 +54,7 @@ describe('Mocha VCR', function() {
 
     vcr.createTest('can be read with a done param', async function(done) {
       response = 'incorrectResponse';
-      rp.get(`http://localhost:${PORT}/test`)
+      await rp.get(`http://localhost:${PORT}/test`)
         .then((resp) => expect(resp).to.be.equal('response1'))
         // tslint:disable-next-line:no-unnecessary-callback-wrapper
         .then(() => done())
