@@ -54,11 +54,9 @@ describe('Mocha VCR', function() {
 
     vcr.createTest('can be read with a done param', async function(done) {
       response = 'incorrectResponse';
-      await rp.get(`http://localhost:${PORT}/test`)
-        .then((resp) => expect(resp).to.be.equal('response1'))
-        // tslint:disable-next-line:no-unnecessary-callback-wrapper
-        .then(() => done())
-        .catch(done);
+      const result = await rp.get(`http://localhost:${PORT}/test`);
+      expect(result).to.be.equal('response1');
+      done();
     }).playCassette(
       'Mocha VCR mocks the http requests that were recorded can be written.cassette'
     ).register(this);
