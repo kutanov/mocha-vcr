@@ -52,7 +52,7 @@ describe('Mocha VCR', function() {
       'Mocha VCR mocks the http requests that were recorded can be written.cassette'
     ).register(this);
 
-    vcr.createTest('can be read with a done param', function(done) {
+    vcr.createTest('can be read with a done param', async function(done) {
       response = 'incorrectResponse';
       rp.get(`http://localhost:${PORT}/test`)
         .then((resp) => expect(resp).to.be.equal('response1'))
